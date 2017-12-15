@@ -5,7 +5,13 @@ My readFile function opens the file, and the reads every single line in the
 given dictionary. For each word, I check whether I've seen a compressed version
 of the word before. If it's not, I make a new list with the current word as value.
 If it's not, I make a new entry. If we've already seen a compressed version of
-the word though, we need to just append it to the list. However, if we just
+the word though, we need to just append it to the list. 
+
+
+
+Design Choice:
+
+However, if we just
 append it to the list, we eventually have to sort it later so that we can return
 the words in lexicographical order. Therefore, I believe it's better if we add
 it in a way that maintains the sorted order of the lists at all times.
@@ -14,19 +20,21 @@ for the word, because I know the word isn't in the list (since all words are uni
 however, I'm looking for where I should put it so the list remains sorted. This is
 O(nlogn) (n is the length of the list in the dictionary) for each word in the dictionary.
 
-Design Choice:
 This payoff is something we need to discuss if we're going to implement in real life.
 On one hand, we can just append everything to the list, which is O(1), and then sort the
 entire list every time the user gives a new input OR we could maintain the sorted list, but
 we would have to do this O(nlogn) add every time we're adding a new word into the dictionary.
-I chose this approach, because I figured the data for the dictionary is preprocessed one time,
-and the user inputs can keep increasing without the runtime increasing too much.
-In other words, I wanted to take more time preprocessing the data in the offline process
+We could choose this approach (commented out in the code) if we know the data for the dictionary is preprocessed one time. 
+In other words, the other approach would be great if we want to take less time preprocessing the data in the offline process
 so in a way that ensures that the online process goes smoothly and efficiently.
 
+However, in this case, since we know we'll be having about a million words in the dictionary, 
+we'll just append to the list. So it'll take O(1) to just append to the list.
+
+
 In general, reading the file will take O(N) if N represents how many lines
-there are in the dictionary, and for each word, it'll take O(nlogn) to add to
-a list in the dictionary.
+there are in the dictionary, and for each word, (if we choose the binary search approach) 
+it'll take O(nlogn) to add to a list in the dictionary.
 
 Online runtime:
 
