@@ -29,7 +29,9 @@ In other words, the binarySearchAndAdd approach would be great if we want to tak
 However, in this case, since we know we'll be having about a million words in the dictionary and only about
 10,000 queries, we can just append to the list without sorting it. So it'll take O(1) to just append to the list. However, when we 
 call sorted on the list that FindWords return, it'll take O(nlogn) (n is the size of the list) for 
-every word the user asks for, but we know that this will be limited by 10,000. 
+every word the user asks for, but we know that the number of times we'll call findWords will be limited by 10,000. 
+Also, the sizes of the lists in general will be much smaller than a million, so I chose to implement it by appending instead
+of sorting with binarySearch. :)
 
 In general, reading the file will take O(N) if N represents how many lines
 there are in the dictionary, and for each word, (if we choose the binary search approach) 
