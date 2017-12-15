@@ -8,7 +8,6 @@ If it's not, I make a new entry. If we've already seen a compressed version of
 the word though, we need to just append it to the list. 
 
 
-
 Design Choice:
 
 However, if we just
@@ -29,8 +28,9 @@ In other words, the other approach would be great if we want to take less time p
 so in a way that ensures that the online process goes smoothly and efficiently.
 
 However, in this case, since we know we'll be having about a million words in the dictionary, 
-we'll just append to the list. So it'll take O(1) to just append to the list.
-
+we'll just append to the list. So it'll take O(1) to just append to the list. However, when we 
+call sorted on the list that FindWords return, it'll take O(nlogn) (n is the size of the list) for 
+every word the user asks for, but we know that this will be limited by 10,000. 
 
 In general, reading the file will take O(N) if N represents how many lines
 there are in the dictionary, and for each word, (if we choose the binary search approach) 
@@ -72,5 +72,3 @@ should add up to the total number of given words in the original dictionary.
 Every time we call compressWord, we create a mini-dictionary to keep track
 of the frequency of the letters. This will be as big as the number of unique letters
 in the word.
-
-3.
