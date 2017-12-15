@@ -24,11 +24,10 @@ On one hand, we can just append everything to the list, which is O(1), and then 
 entire list every time the user gives a new input OR we could maintain the sorted list, but
 we would have to do this O(nlogn) add every time we're adding a new word into the dictionary.
 We could choose this approach (commented out in the code) if we know the data for the dictionary is preprocessed one time. 
-In other words, the other approach would be great if we want to take less time preprocessing the data in the offline process
-so in a way that ensures that the online process goes smoothly and efficiently.
+In other words, the binarySearchAndAdd approach would be great if we want to take less time preprocessing the data in the offline process in a way that ensures that the online process goes smoothly and efficiently.
 
-However, in this case, since we know we'll be having about a million words in the dictionary, 
-we'll just append to the list. So it'll take O(1) to just append to the list. However, when we 
+However, in this case, since we know we'll be having about a million words in the dictionary and only about
+10,000 queries, we can just append to the list without sorting it. So it'll take O(1) to just append to the list. However, when we 
 call sorted on the list that FindWords return, it'll take O(nlogn) (n is the size of the list) for 
 every word the user asks for, but we know that this will be limited by 10,000. 
 
