@@ -1,12 +1,11 @@
 import sys
 
-
 def main():
     allWords = readFile(sys.argv[1])
     userInput = raw_input(">")
     while userInput!="":
         result = ""
-        for word in findWord(allWords, userInput):
+        for word in sorted(findWord(allWords, userInput)):
             result += " " + word
         print result
         userInput = raw_input(">")
@@ -27,7 +26,8 @@ def readFile(filename):
         if cWord not in allWords:
             allWords[cWord] = [word]
         else:
-            binarySearchAndAdd(allWords, cWord, word)
+            allWords[cWord].append(word)
+            # binarySearchAndAdd(allWords, cWord, word)
     return allWords
 
 def binarySearchAndAdd(allWords, cWord, word):
